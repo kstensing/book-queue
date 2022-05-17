@@ -1,4 +1,4 @@
-const { User } = require('../models');
+const { User, Book } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 
@@ -61,7 +61,7 @@ const resolvers = {
               const updatedUser =
               await User.findByIdAndUpdate(
                 { _id: context.user._id },
-                { $push: { savedBooks: book } },
+                { $addToSet: { savedBooks: book } },
                 { new: true }
               );
           
