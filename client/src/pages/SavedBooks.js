@@ -12,7 +12,7 @@ import { removeBookId } from '../utils/localStorage';
 const SavedBooks = () => {
 
   // use this to determine if `useEffect()` hook needs to run again
-  const [setUserData] = useState({});
+  //const [setUserData] = useState({});
   // const { userData } = useQuery(GET_ME, {
   //   variables: { userData: thoughtId },
   // });
@@ -33,13 +33,10 @@ const SavedBooks = () => {
 
     try {
       const response = await deleteBook({ variables: { bookId: bookId }, token });
+      console.log("Testing RESPONSE", response)
 
-      // if (!response.ok) {
-      //   throw new Error('something went wrong!');
-      // }
-      //Work here!!!!
-      const updatedUser = response.data;
-      // setUserData(updatedUser);
+      userData = response.data.removeBook;
+      //setUserData(updatedUser);
 
       // upon success, remove book's id from localStorage
       removeBookId(bookId);
