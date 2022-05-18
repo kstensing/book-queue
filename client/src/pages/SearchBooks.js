@@ -63,7 +63,6 @@ const SearchBooks = () => {
 
     // get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
-    console.log("testing middleware", token)
 
     if (!token) {
       return false;
@@ -71,7 +70,6 @@ const SearchBooks = () => {
 
     try {
       const response = await saveBook({ variables: { book: bookToSave }, token});
-      console.log("response----------", response);
       if (response.errors) {
         throw new Error(response.errors.message);
       }
